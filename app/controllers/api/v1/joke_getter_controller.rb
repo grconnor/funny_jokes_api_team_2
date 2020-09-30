@@ -7,6 +7,5 @@ class Api::V1::JokeGetterController < ApplicationController
     response = RestClient.get("https://joke3.p.rapidapi.com/v1/joke", headers)
     parsed_response = JSON.parse(response.body)
     render json: { joke_getter: parsed_response["content"] }
-    binding.pry
   end
 end

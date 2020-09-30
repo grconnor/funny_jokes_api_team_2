@@ -7,6 +7,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require 'webmock/rspec'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -20,4 +21,9 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include ResponseJSON
+  config.filter_gems_from_backtrace('webmock')
+  config.before do
+    stub_request(:get, "https://joke3.p.rapidapi.com/v1/joke").
+         to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
+  end
 end
