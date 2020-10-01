@@ -21,4 +21,16 @@ Things you may want to cover:
 
 * Deployment instructions
 
-* ...
+First user story:
+
+Api gets a random joke from external Api and returns it 
+
+As an API
+in order to return a random joke
+I'd need to fetch a random joke from external API
+
+API makes a get request to " Joke"
+API returns response
+
+Done
+
