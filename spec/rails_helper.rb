@@ -25,5 +25,7 @@ RSpec.configure do |config|
   config.before do
     stub_request(:get, "https://joke3.p.rapidapi.com/v1/joke").
          to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
+    stub_request(:post, "https://joke3.p.rapidapi.com/v1/joke/db09c5d9659d44448c4da0ae5d321e55/upvote").
+         to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
   end
 end

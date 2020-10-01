@@ -6,5 +6,6 @@ module ReqResService
     }
     response = RestClient.get("https://joke3.p.rapidapi.com/v1/joke", headers)
     return JSON.parse(response.body)
+    binding.pry
   end
 end
