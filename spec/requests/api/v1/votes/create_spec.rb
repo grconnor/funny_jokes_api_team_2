@@ -34,7 +34,7 @@ RSpec.describe 'POST /api/v1/votes', type: :request do
     before do
       post '/api/v1/votes', 
       params: { 
-        joke_id: "db09c5d965"
+        joke_id: "invalid_id"
       },
       headers: headers
     end
@@ -44,7 +44,7 @@ RSpec.describe 'POST /api/v1/votes', type: :request do
     end
 
     it 'should respond with error message' do
-      expect(response_json["message"]).to eq "Sorry, we are not that funny, we don't have that joke!"
+      expect(response_json["error_message"]).to eq "Sorry, we are not that funny, we don't have that joke!"
     end
   end
 end

@@ -2,7 +2,7 @@ require 'coveralls'
 Coveralls.wear_merged!('rails')
 
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
@@ -24,9 +24,11 @@ RSpec.configure do |config|
   config.include ResponseJSON
   config.filter_gems_from_backtrace('webmock')
   config.before do
-    stub_request(:get, "https://joke3.p.rapidapi.com/v1/joke").
-         to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
-    stub_request(:post, "https://joke3.p.rapidapi.com/v1/joke/db09c5d9659d44448c4da0ae5d321e55/upvote").
-         to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
+    stub_request(:get, 'https://joke3.p.rapidapi.com/v1/joke')
+      .to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
+    stub_request(:post, 'https://joke3.p.rapidapi.com/v1/joke/db09c5d9659d44448c4da0ae5d321e55/upvote')
+      .to_return(status: 200, body: file_fixture('random_joke.json'), headers: {})
+    stub_request(:post, 'https://joke3.p.rapidapi.com/v1/joke/invalid_id/upvote')
+      .to_return(status: 404, body: '', headers: {})
   end
 end
