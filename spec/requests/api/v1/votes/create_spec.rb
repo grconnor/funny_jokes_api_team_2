@@ -22,11 +22,11 @@ RSpec.describe 'POST /api/v1/votes', type: :request do
     end
 
     it 'should respond with joke_id' do
-      expect(response_json).to have_key 'id'
+      expect(response_json["joke"]).to have_key 'id'
     end
 
     it 'api responds with the same joke that was sent in the post request' do
-      expect(response_json["jokes"]['id']).to eq "db09c5d9659d44448c4da0ae5d321e55"
+      expect(response_json["joke"]['id']).to eq "db09c5d9659d44448c4da0ae5d321e55"
     end
   end
 end
