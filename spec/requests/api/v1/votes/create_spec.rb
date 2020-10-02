@@ -29,4 +29,22 @@ RSpec.describe 'POST /api/v1/votes', type: :request do
       expect(response_json["joke"]['id']).to eq "db09c5d9659d44448c4da0ae5d321e55"
     end
   end
+
+  describe 'unsuccessfully' do
+    before do
+      post '/api/v1/votes', 
+      params: { 
+        joke_id: "db09c5d965"
+      },
+      headers: headers
+    end
+
+    it 'should respond with 404 status' do
+      expect(response.status).to eq 404
+    end
+
+    it 'should respond with error message' do
+      expect(response_json["message"]).to eq "Sorry, we are not that funny, we don't have that joke!"
+    end
+  end
 end
