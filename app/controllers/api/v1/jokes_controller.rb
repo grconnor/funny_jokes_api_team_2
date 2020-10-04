@@ -4,15 +4,18 @@ class Api::V1::JokesController < ApplicationController
     render json: { jokes: jokes }
   end
 
-  before_action :authenticate_user!
-
   def create
-    joke = Joke.create(joke_params)
+    joke = current_user.jokes.create(joke_params)
+    if joke.persisted?
+      render json: { message: "Your joke has been saved" }
+    else
+      render json: { error_message: "Sorry, we couldn't save your joke" }
+    end
   end
 
   private
 
   def joke_params
-    params.permit("jokeId", "content")
+    params.permit(["joke_id"], ["content"])
   end
 end

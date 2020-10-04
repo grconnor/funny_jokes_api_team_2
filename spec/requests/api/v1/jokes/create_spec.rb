@@ -7,7 +7,7 @@ RSpec.describe "POST /api/v1/jokes", type: :request do
     before do
       post "/api/v1/jokes",
            params: {
-             jokeId: "db09c5d9659d44448c4da0ae5d321e55",
+             joke_id: "db09c5d9659d44448c4da0ae5d321e55",
              content: "Why do trees seem suspicious on sunny days? Dunno, they're just a bit shady."
            },
            headers: headers
