@@ -14,7 +14,7 @@ module JokesApiService
       "x-rapidapi-key": "285c319c04mshb039dd6377ad95cp13cb02jsnf523c698a5dd",
     }
     begin
-      response = RestClient.post("https://joke3.p.rapidapi.com/v1/joke/#{joke_id}/upvote", "facu", headers)
+      response = RestClient.post("https://joke3.p.rapidapi.com/v1/joke/#{joke_id}/upvote", "-", headers)
       return JSON.parse(response.body)
 
     rescue => error

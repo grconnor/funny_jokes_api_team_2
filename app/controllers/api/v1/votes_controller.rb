@@ -1,4 +1,5 @@
 class Api::V1::VotesController < ApplicationController
+  before_action :authenticate_user!
   def create
     joke_id = params["jokeId"]
     joke = JokesApiService.post_create_upvotes(joke_id)
