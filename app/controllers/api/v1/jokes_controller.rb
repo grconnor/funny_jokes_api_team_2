@@ -16,6 +16,6 @@ class Api::V1::JokesController < ApplicationController
   private
 
   def joke_params
-    params.permit(["joke_id"], ["content"])
+    params.permit(:joke_id, :content)
   end
 end
