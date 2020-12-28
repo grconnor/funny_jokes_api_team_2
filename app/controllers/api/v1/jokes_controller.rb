@@ -1,5 +1,6 @@
 class Api::V1::JokesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+
   def index
     jokes = JokesApiService.get_index_of_jokes
     render json: { jokes: jokes }
